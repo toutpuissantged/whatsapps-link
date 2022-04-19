@@ -5,7 +5,9 @@ import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 import { Button , Input , Textarea , Container, Row, Col , Spacer  , Loading} from '@nextui-org/react';
-import { useState } from 'react'
+import { useState , } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+  import { faCopy } from '@fortawesome/free-solid-svg-icons'
 
 const GenerateLink = (number  : string , message : string)  : string=> {
   const filter_number = number.replace(/[^0-9]/g, '');
@@ -15,7 +17,7 @@ const GenerateLink = (number  : string , message : string)  : string=> {
 }
 
 const Home: NextPage = () => {
-  const [number , setNumber] = useState('0')
+  const [number , setNumber] = useState('')
   const [text , setText] = useState('')
   return (
     <div className={styles.container}>
@@ -38,15 +40,17 @@ const Home: NextPage = () => {
        
             <Col>
               <Row>
-                <Input placeholder="Your phone number" className='input_box' value={number} onChange={e=>{setNumber(e.target.value)}} />
+                <Input labelPlaceholder="Your phone number"  color='primary' clearable value={number} onChange={e=>{setNumber(e.target.value)}} bordered />
               </Row>
               <Spacer />
               <Row>
-                <Textarea placeholder="Custom message to send " className='text_area_box' value={text} onChange={e=>{setText(e.target.value)}} rows={4}/>
+                <Textarea placeholder="Custom message to send " className='text_area_box' value={text} color='success' bordered onChange={e=>{setText(e.target.value)}} rows={4}/>
               </Row>
               <Spacer />
+              
               <Row>
-                <Input readOnly  contentRightStyling={false}  status="success" initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link" size='lg' />
+                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg' labelRight={<FontAwesomeIcon />} />
+                
               </Row>
             </Col>
      
