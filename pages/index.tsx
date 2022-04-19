@@ -49,7 +49,7 @@ const Home: NextPage = () => {
               <Spacer />
               
               <Row>
-                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg' labelRight={<FontAwesomeIcon />} />
+                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg'  />
                 
               </Row>
             </Col>
