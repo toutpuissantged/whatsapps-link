@@ -29,7 +29,7 @@ const CopyButton = ({text} : {text : string}) => {
     <Button
       className={styles.copyButton}
       onClick={onCopy}
-      size="small"
+      size="sm"
     >
       {copied ? 'Copied' : 'Copy'}
       <FontAwesomeIcon icon={faCopy} color="white" />
@@ -43,7 +43,7 @@ const OpenLinkButton = (link : string)  => {
       className={styles.copyButton}
       onClick={() => window.open(link)}
       color="primary"
-      size="small"
+      size="sm"
     >
       Open
     </Button>
@@ -83,12 +83,8 @@ const Home: NextPage = () => {
               <Spacer />
               
               <Row>
-                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg' labelRight={
-                <>
-                  <CopyButton text={GenerateLink(number,text)} />
-                  
-                </>
-                } />
+                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg'  />
+                <CopyButton text={GenerateLink(number,text)} />
                 
               </Row>
             </Col>
