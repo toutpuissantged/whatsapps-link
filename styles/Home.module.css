@@ -11,6 +11,10 @@
   justify-content: center;
   align-items: center;
 }
+.input_box{
+  background-color: transparent;
+  
+}
 
 .footer {
   display: flex;

@@ -8,7 +8,9 @@ import { Button , Input , Textarea , Container, Row, Col , Spacer  , Loading} fr
 import { useState } from 'react'
 
 const GenerateLink = (number  : string , message : string)  : string=> {
-  const whatsapp = `https://wa.me/${number}?text=${message}`
+  const filter_number = number.replace(/[^0-9]/g, '');
+  const message_encoded = encodeURIComponent(message);
+  const whatsapp = `https://wa.me/${filter_number}?text=${message_encoded}`
   return whatsapp
 }
 
@@ -36,15 +38,15 @@ const Home: NextPage = () => {
        
             <Col>
               <Row>
-                <Input placeholder="Your phone number" value={number} onChange={e=>{setNumber(e.target.value)}} />
+                <Input placeholder="Your phone number" className='input_box' value={number} onChange={e=>{setNumber(e.target.value)}} />
               </Row>
               <Spacer />
               <Row>
-                <Textarea placeholder="Custom message to send " value={text} onChange={e=>{setText(e.target.value)}} rows={4}/>
+                <Textarea placeholder="Custom message to send " className='text_area_box' value={text} onChange={e=>{setText(e.target.value)}} rows={4}/>
               </Row>
               <Spacer />
               <Row>
-                <Input readOnly contentRightStyling={false} status="success" initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link" size='lg' />
+                <Input readOnly  contentRightStyling={false}  status="success" initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link" size='lg' />
               </Row>
             </Col>
      
