@@ -16,6 +16,40 @@ const GenerateLink = (number  : string , message : string)  : string=> {
   return whatsapp
 }
 
+const CopyButton = ({text} : {text : string}) => {
+  const [copied, setCopied] = useState(false);
+  const onCopy = () => {
+    setCopied(true);
+    navigator.clipboard.writeText(text);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
+  return (
+    <Button
+      className={styles.copyButton}
+      onClick={onCopy}
+      size="small"
+    >
+      {copied ? 'Copied' : 'Copy'}
+      <FontAwesomeIcon icon={faCopy} color="white" />
+    </Button>
+  );
+};
+
+const OpenLinkButton = (link : string)  => {
+  return (
+    <Button
+      className={styles.copyButton}
+      onClick={() => window.open(link)}
+      color="primary"
+      size="small"
+    >
+      Open
+    </Button>
+  );
+}
+
 const Home: NextPage = () => {
   const [number , setNumber] = useState('')
   const [text , setText] = useState('')
@@ -49,7 +83,12 @@ const Home: NextPage = () => {
               <Spacer />
               
               <Row>
-                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg'  />
+                <Input readOnly  contentRightStyling={false}  status="default" bordered initialValue="Your link generated"  value={GenerateLink(number,text)} labelLeft="Link"  size='lg' labelRight={
+                <>
+                  <CopyButton text={GenerateLink(number,text)} />
+                  
+                </>
+                } />
                 
               </Row>
             </Col>
